@@ -11,7 +11,7 @@ import { MealRecipe } from "./pages/MealRecipe";
 function App() {
     return (
         <>
-            <Router>
+            <Router basename="/react-meal">
                 <Header />
                 <main className="container content">
                     {/* Switch остановливает дальнейший перебор при
