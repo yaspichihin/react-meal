@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -11,7 +11,7 @@ import { MealRecipe } from "./pages/MealRecipe";
 function App() {
     return (
         <>
-            <HashRouter basename="/react-meal">
+            <Router>
                 <Header />
                 <main className="container content">
                     {/* Switch остановливает дальнейший перебор при
@@ -30,7 +30,7 @@ function App() {
                     </Switch>
                 </main>
                 <Footer />
-            </HashRouter>
+            </Router>
         </>
     );
 }
