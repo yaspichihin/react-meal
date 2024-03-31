@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, HashRouter, Route, Switch } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { Home } from "./pages/Home";
+import { Contact } from "./pages/Contact";
+import { About } from "./pages/About";
+import { NotFound } from "./pages/NotFound";
+import { MealsInCategory } from "./pages/MealsInCategory";
+import { MealRecipe } from "./pages/MealRecipe";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <HashRouter basename="/react-meal">
+                <Header />
+                <main className="container content">
+                    {/* Switch остановливает дальнейший перебор при
+                    совпадении path и url в браузере */}
+                    <Switch>
+                        {/* exact добавляется для точного сопоставления иначе по ссылке '/contact' 
+                          отобразить и домашня страница и контакаты т.к. будет вхождение по '/' */}
+                        <Route exact path="/" component={Home} />
+                        <Route path="/about" component={About} />
+                        <Route path="/contacts" component={Contact} />
+                        {/* :id динамический параметр */}
+                        <Route path="/category/:categoryName" component={MealsInCategory} />
+                        <Route path="/recipe/:idMeal" component={MealRecipe} />
+                        {/* Если совпадении нет, то отобразиться последняя страница */}
+                        <Route component={NotFound} />
+                    </Switch>
+                </main>
+                <Footer />
+            </HashRouter>
+        </>
+    );
 }
 
 export default App;
